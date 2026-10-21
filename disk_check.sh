@@ -1,4 +1,10 @@
 #!/bin/bash
-USAGE=$(df / | awk 'NR==2 {print $5}' | tr -d '%'
-echo "Disk Usage: ${USAGE}%"
+THRESHOLD=80
+USAGE=$(df / | awk 'NR==2 {print $5}' | tr -d '%')
 
+if [ "$USAGE" -ge "$THRESHOLD" ]; then
+    echo "ALERT: Disk usage is ${USAGE}% (threshold ${THRESHOLD}%)"
+    exit 1
+else
+    echo "OK: Disk usage is ${USAGE}%"
+fi

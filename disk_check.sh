@@ -1,5 +1,5 @@
 #!/bin/bash
-THRESHOLD=80
+THRESHOLD=${1:-80}
 USAGE=$(df / | awk 'NR==2 {print $5}' | tr -d '%')
 
 if [ "$USAGE" -ge "$THRESHOLD" ]; then
@@ -7,4 +7,4 @@ if [ "$USAGE" -ge "$THRESHOLD" ]; then
     exit 1
 else
     echo "OK: Disk usage is ${USAGE}%"
-fi
+    fi

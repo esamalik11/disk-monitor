@@ -1,5 +1,5 @@
 #!/bin/bash
-THRESHOLD=80
+THRESHOLD=85
 USAGE=$(df / | awk 'NR==2 {print $5}' | tr -d '%')
 
 if [ "$USAGE" -ge "$THRESHOLD" ]; then
